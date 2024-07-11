@@ -4,7 +4,7 @@ import shutil
 
 # --------------------------- Setup ---------------------------
 # File path for the folder that needs to be organized
-filePath = r"C:/Users/ubrub/Downloads"
+filePath = r"C:/Users/ubrub/Downloads/Testfolder"
 
 # Categories for the folders and their coresponding file types
 # New Categories and extensions can be added here
@@ -14,8 +14,7 @@ categories = {
     'Videos': ['.mp4', '.mkv', '.flv', '.avi', '.mov'],
     'Music': ['.mp3', '.wav', '.aac', '.flac'],
     'Archives': ['.zip', '.rar', '.tar', '.gz'],
-    'Executables': ['.exe'],
-    'Other':[]
+    'Executables': ['.exe']
 }
 
 # check if category folders exist, make the folder if it doesn't
@@ -31,22 +30,23 @@ fileList = [files for files in os.listdir(filePath)]
 # Function to determine the category based on the file extension
 def getCategory(file):
     fileNames_Splitted = os.path.splitext(file)
-    fileExtension = fileNames_Splitted[1].lower
+    fileExtension = fileNames_Splitted[1].lower()
     for catagory, extensions in categories.items():
         if fileExtension in extensions:
             return catagory
-        else:
-            return "Other"
+    return None
 
 # Function to move a file to a category folder
 def moveFile(file, category):
-    fileSourcePath = os.path.join(filePath, file)
-    destinationPath = os.path.join(filePath, category, file)
-    shutil.move(fileSourcePath, destinationPath)
-    print(f"Moved {file} to the {category} folder")
+    if category:
+        fileSourcePath = os.path.join(filePath, file)
+        destinationPath = os.path.join(filePath, category, file)
+        shutil.move(fileSourcePath, destinationPath)
+        print(f"Moved {file} to the {category} folder")
 
 # --------------------------- Execute ---------------------------
 # Organize files to their respective folders
 for file in fileList:
     category = getCategory(file)
+    print(f"moving {file} to {category}")
     moveFile(file, category)
