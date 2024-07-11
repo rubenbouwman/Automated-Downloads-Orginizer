@@ -31,9 +31,11 @@ def getCategory(file):
     for catagory, extensions in categories.items():
         if fileExtension in extensions:
             return catagory
-    return "Other"
+        else:
+            return "Other"
 
-def moveFiles(file, category):
+# Function to move a file to a category folder
+def moveFile(file, category):
     fileSourcePath = os.path.join(filePath, file)
     destinationPath = os.path.join(filePath, category, file)
     shutil.move(fileSourcePath, destinationPath)
@@ -42,4 +44,4 @@ def moveFiles(file, category):
 # Organize files to their respective folders
 for file in fileList:
     category = getCategory(file)
-    moveFiles(file, category)
+    moveFile(file, category)
