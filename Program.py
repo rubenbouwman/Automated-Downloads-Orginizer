@@ -1,9 +1,11 @@
 import os
+import shutil
 
 # File path for the folder that needs to be organized
 filePath = r"C:/Users/ubrub/Downloads"
 
 # Categories for the folders and their coresponding file types
+# New Categories and extensions can be added here
 categories = {
     'Documents': ['.pdf', '.doc', '.docx', '.txt', '.xlsx', '.pptx'],
     'Images': ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.svg'],
@@ -30,3 +32,14 @@ def getCategory(file):
         if fileExtension in extensions:
             return catagory
     return "Other"
+
+def moveFiles(file, category):
+    fileSourcePath = os.path.join(filePath, file)
+    destinationPath = os.path.join(filePath, category, file)
+    shutil.move(fileSourcePath, destinationPath)
+    print(f"Moved {file} to the {category} folder")
+
+# Organize files to their respective folders
+for file in fileList:
+    category = getCategory(file)
+    moveFiles(file, category)
