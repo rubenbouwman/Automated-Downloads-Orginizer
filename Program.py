@@ -12,7 +12,13 @@ categories = {
     'Archives': ['.zip', '.rar', '.tar', '.gz']
 }
 
+# check if category folders exist, make the folder if it doesn't
+for folder in categories:
+    folderPath = os.path.join(filePath, folder)
+    if not os.path.exists(folderPath):
+        os.makedirs(folderPath)
+
 # Make a list of all the files in the given directory
 fileList = [files for files in os.listdir(filePath)]
 
-print(fileList)
+
