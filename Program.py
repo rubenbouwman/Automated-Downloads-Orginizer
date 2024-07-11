@@ -25,14 +25,16 @@ categories = {
 # Function to make a list of all the files in the given directory
 def setFileList():
     global fileList
+    print("Scanning files...")
     fileList = [files for files in os.listdir(filePath)]
+    print(f"{len(fileList)} files found")
 
 # check if category folders exist, make the folder if it doesn't
 def makeFolders():
     for folder in categories:
         folderPath = os.path.join(filePath, folder)
         if not os.path.exists(folderPath):
-            print("Making category folders")
+            print(f"Making {folder} folder")
             os.makedirs(folderPath)
 
 # Function to determine the category based on the file extension
@@ -62,7 +64,7 @@ def run():
     setFileList()
     makeFolders()
     moveFile()
-    print("Finished organizing")
+    print("Finished organizing!")
 
 # --------------------------- Execute ---------------------------
 run()
