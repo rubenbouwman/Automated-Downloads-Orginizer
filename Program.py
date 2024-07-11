@@ -1,14 +1,11 @@
 # --------------------------- Imports ---------------------------
 import os
 import shutil
-# --------------------------- Testing ---------------------------
-# Directory for a test folder, comment out 'filePath' below 
-# if you want to use this
-# filePath = r"./Downloads/Testfolder"
 
 # --------------------------- Setup ---------------------------
 # File path for the folder that needs to be organized
-filePath = r"C:/Users/ubrub/Downloads/Testfolder"
+# filePath = r"C:/Users/ubrub/Downloads"
+filePath = input("Enter the path to Downloads folder: ")
 
 # Categories for the folders and their coresponding file types
 # New Categories and extensions can be added here
@@ -56,7 +53,6 @@ def moveFile(file, category):
 # Organize files to their respective folders
 for file in fileList:
     category = getCategory(file)
-    print(f"moving {file} to {category}")
     moveFile(file, category)
 
 print("Finished organizing")
