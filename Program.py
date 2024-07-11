@@ -9,7 +9,8 @@ categories = {
     'Images': ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.svg'],
     'Videos': ['.mp4', '.mkv', '.flv', '.avi', '.mov'],
     'Music': ['.mp3', '.wav', '.aac', '.flac'],
-    'Archives': ['.zip', '.rar', '.tar', '.gz']
+    'Archives': ['.zip', '.rar', '.tar', '.gz'],
+    'Other':[]
 }
 
 # check if category folders exist, make the folder if it doesn't
@@ -21,4 +22,11 @@ for folder in categories:
 # Make a list of all the files in the given directory
 fileList = [files for files in os.listdir(filePath)]
 
-
+# Function to determine the category based on the file extension
+def getCategory(file):
+    fileNames_Splitted = os.path.splitext(file)
+    fileExtension = fileNames_Splitted[1].lower
+    for catagory, extensions in categories.items():
+        if fileExtension in extensions:
+            return catagory
+    return "Other"
