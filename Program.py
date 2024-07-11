@@ -1,6 +1,8 @@
+# --------------------------- Imports ---------------------------
 import os
 import shutil
 
+# --------------------------- Setup ---------------------------
 # File path for the folder that needs to be organized
 filePath = r"C:/Users/ubrub/Downloads"
 
@@ -12,6 +14,7 @@ categories = {
     'Videos': ['.mp4', '.mkv', '.flv', '.avi', '.mov'],
     'Music': ['.mp3', '.wav', '.aac', '.flac'],
     'Archives': ['.zip', '.rar', '.tar', '.gz'],
+    'Executables': ['.exe'],
     'Other':[]
 }
 
@@ -24,6 +27,7 @@ for folder in categories:
 # Make a list of all the files in the given directory
 fileList = [files for files in os.listdir(filePath)]
 
+# --------------------------- Functions ---------------------------
 # Function to determine the category based on the file extension
 def getCategory(file):
     fileNames_Splitted = os.path.splitext(file)
@@ -41,6 +45,7 @@ def moveFile(file, category):
     shutil.move(fileSourcePath, destinationPath)
     print(f"Moved {file} to the {category} folder")
 
+# --------------------------- Execute ---------------------------
 # Organize files to their respective folders
 for file in fileList:
     category = getCategory(file)
