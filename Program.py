@@ -4,8 +4,7 @@ import shutil
 
 # --------------------------- Setup ---------------------------
 # File path for the folder that needs to be organized
-# filePath = r"C:/Users/ubrub/Downloads"
-filePath = input("Enter the path to Downloads folder: ")
+filePath = input("Enter the path to your folder: ")
 fileList = []
 
 # Categories for the folders and their coresponding file types
